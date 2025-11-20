@@ -1,0 +1,211 @@
+/* Custom Properties / Variables for Theming */
+:root {
+  --primary-color: #3f51b5; /* Indigo */
+  --accent-color: #ff4081; /* Pink Accent */
+  --text-color: #333;
+  --text-light: #555;
+  --bg-color: #eef2f6; /* Light Blue-Gray Background */
+  --card-bg: #ffffff;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
+  --border-radius: 12px;
+}
+
+/* Base Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px 20px;
+}
+
+/* Main Layout */
+.dashboard-container {
+  width: 100%;
+  max-width: 1200px; /* Wider container for a dashboard feel */
+}
+
+header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-weight: 600;
+  color: var(--text-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--bg-color);
+  padding-bottom: 10px;
+}
+
+/* Card Styling - The "God Extreme" UI Element */
+.summary-card, .input-card, .data-view-card, .expense-list-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.summary-card:hover, .input-card:hover, .data-view-card:hover, .expense-list-card:hover {
+    box-shadow: var(--shadow-hover); /* Subtle hover effect for polish */
+}
+
+/* Summary Card - Highlighting Key Data */
+.summary-card {
+  text-align: center;
+  margin-bottom: 30px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1.5rem 2rem;
+}
+
+.summary-card p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+#total-expenses {
+  margin: 5px 0 0;
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* Main Content CSS Grid Layout */
+.main-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* Input slightly wider than list on large screens */
+  grid-template-areas:
+    "input list"
+    "chart chart";
+  gap: 20px;
+}
+
+.input-card { grid-area: input; }
+.expense-list-card { grid-area: list; }
+.data-view-card { 
+  grid-area: chart; 
+  max-height: 500px; /* Ensure chart has enough space */
+} 
+
+/* Form & Inputs */
+#expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2);
+}
+
+/* Button Styling */
+.add-button {
+  padding: 12px 20px;
+  border: none;
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.1s;
+  margin-top: 10px;
+}
+
+.add-button:hover {
+  background: #3949a2;
+}
+
+.add-button:active {
+  transform: scale(0.98); /* Click feedback */
+}
+
+/* Expense List - Transaction Look */
+ul {
+  list-style: none;
+  padding: 0;
+  max-height: 350px; /* Enable scrolling for many transactions */
+  overflow-y: auto;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-color);
+  margin: 8px 0;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  border-left: 5px solid var(--accent-color); /* Visual highlight */
+  transition: background 0.3s;
+}
+
+li:hover {
+    background: #e6ecf2;
+}
+
+.expense-category {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.expense-amount {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Responsive Design for Mobile/Tablet */
+@media (max-width: 900px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "input"
+      "list"
+      "chart";
+  }
+
+  .data-view-card {
+    min-height: 250px;
+  }
+}
